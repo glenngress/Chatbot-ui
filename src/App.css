@@ -33,17 +33,18 @@
     overflow-y: auto;
   }
   
-  .user-message {
-    background-color: #e74c3c; /* red */
+  /* .user-message {
+    background-color: #e74c3c; 
     align-self: flex-end;
     border-bottom-right-radius: 0;
   }
   
   .bot-message {
-    background-color: #2c3e50; /* dark/black */
+    background-color: #2c3e50; 
     align-self: flex-start;
     border-bottom-left-radius: 0;
-  }
+  } 
+  */
   
   .input-container {
     display: flex;
@@ -58,4 +59,22 @@
     color: white;
     word-wrap: break-word;
     line-height: 1.4;
+  }
+  .bubble {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }  
+  
+  .user-message {
+    background-color: #ffcccc;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .bot-message {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+    margin-right: auto;
   }

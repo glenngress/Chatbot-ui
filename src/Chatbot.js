@@ -39,8 +39,7 @@ const Chatbot = () => {
 
   const handleSendMessage = async () => {
     if (input.trim()) {
-      // Add user message
-      setMessages(prevMessages => [...prevMessages, { text: input, isUser: true }]);
+      setMessages(prev => [...prev, { text: input, isUser: true }]);
   
       try {
         const response = await fetch('http://localhost:8080/process_input', {
@@ -51,44 +50,13 @@ const Chatbot = () => {
   
         if (response.ok) {
           const data = await response.json();
-          console.log("Received response:", data);
   
-          // If extracted_fields exist, render a table
-          if (data.extracted_fields) {
-            const table = (
-              <table style={{ width: '100%', borderCollapse: 'collapse', color: 'black' }}>
-                <thead>
-                  <tr>
-                    <th style={{ border: '1px solid white', padding: '5px' }}>Field</th>
-                    <th style={{ border: '1px solid white', padding: '5px' }}>Value</th>
-                    <th style={{ border: '1px solid white', padding: '5px' }}>Status</th>
-                    <th style={{ border: '1px solid white', padding: '5px' }}>Suggestions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.entries(data.extracted_fields).map(([field, info]) => (
-                    <tr key={field}>
-                      <td style={{ border: '1px solid white', padding: '5px' }}>{field}</td>
-                      <td style={{ border: '1px solid white', padding: '5px' }}>{info.extracted_value}</td>
-                      <td style={{ border: '1px solid white', padding: '5px' }}>{info.status}</td>
-                      <td style={{ border: '1px solid white', padding: '5px' }}>
-                        {info.suggested_matches?.length > 0 ? info.suggested_matches.join(', ') : 'N/A'}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            );
+          const responseContent = {
+            processed_text: data.processed_text,
+            table: data.extracted_fields
+          };
   
-            // Display the processed_text + the table
-            setMessages(prev => [
-              ...prev,
-              { text: data.processed_text, isUser: false },
-              { text: table, isUser: false }
-            ]);
-          } else {
-            setMessages(prevMessages => [...prevMessages, { text: data.response, isUser: false }]);
-          }
+          setMessages(prev => [...prev, { isUser: false, responseContent }]);
         } else {
           console.error("Error:", response.statusText);
         }
@@ -112,13 +80,52 @@ const Chatbot = () => {
         className="messages"
       >
       {messages.map((msg, index) => (
-        <div
-          key={index}
-          className={`message ${msg.isUser ? 'user-message' : 'bot-message'}`}
-        >
-          {typeof msg.text === 'string' ? msg.text : msg.text}
+  <div key={index} style={{ marginBottom: '10px' }}>
+    {msg.isUser ? (
+      <div className="user-message bubble">{msg.text}</div>
+    ) : msg.responseContent ? (
+      <div className="bot-message bubble">
+        <strong>{"Request Details"}</strong>
+        <table style={{ marginTop: '8px', width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+          <thead>
+            <tr>
+              <th style={{ border: '1px solid #ccc' }}>Field</th>
+              <th style={{ border: '1px solid #ccc' }}>Value</th>
+              <th style={{ border: '1px solid #ccc' }}>Suggested Matches</th>
+              <th style={{ border: '1px solid #ccc' }}>Warnings</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(msg.responseContent.table).map(([field, details]) => (
+              <tr key={field}>
+                <td style={{ border: '1px solid #ccc', padding: '4px' }}>{field}</td>
+                <td style={{ border: '1px solid #ccc', padding: '4px' }}>{details.matched_value}</td>
+                <td style={{ border: '1px solid #ccc', padding: '4px' }}>
+                  {details.suggested_matches.join(', ')}
+                </td>
+                <td style={{ border: '1px solid #ccc', padding: '4px', color: details.similarity < 0.8 ? 'red' : 'green' }}>
+                  {details.similarity < 0.8 ? 'Low similarity!' : '✓'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* Confirm/Edit Buttons */}
+        <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+          <button style={{ padding: '5px 10px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px' }}>
+            Confirm
+          </button>
+          <button style={{ padding: '5px 10px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '5px' }}>
+            Edit
+          </button>
         </div>
-      ))}
+      </div>
+    ) : (
+      <div className="bot-message bubble">{msg.text}</div>
+    )}
+  </div>
+))}
     </div>
 
 
