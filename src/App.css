@@ -13,7 +13,7 @@
   
   .chatbot-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     background-color:rgb(211, 62, 62);
     color: white;

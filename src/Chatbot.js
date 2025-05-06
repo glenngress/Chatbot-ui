@@ -82,7 +82,7 @@ const Chatbot = () => {
       borderRadius: '10px' // optional: rounded corners
     }}>
       {/* Chatbot Header */}
-      <div className="chatbot-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', backgroundColor: '#ed3726', color: 'white' }}>
+      <div className="chatbot-header" style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', padding: '10px', backgroundColor: '#ed3726', color: 'white', borderRadius: '8px', marginBottom: '15px' }}>
         <img src={logo} alt="Logo" style={{ width: '30px', height: '30px' }} />
         <span>Hello user, how may I assist you today?</span>
       </div>
@@ -145,10 +145,10 @@ const Chatbot = () => {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          style={{ width: '80%', padding: '5px' }}
+          style={{ borderRadius: '5px', backgroundColor: '#f2f2f2', width: '80%', padding: '5px' }}
           placeholder="Type a message..."
         />
-        <button onClick={handleSendMessage} style={{ padding: '5px', marginLeft: '10px' }}>Send</button>
+        <button onClick={handleSendMessage} style={{ borderRadius: '5px', border: 'none', backgroundColor: '#007bff', color: 'white', cursor: 'pointer' ,padding: '5px', marginLeft: '10px' }}>Send</button>
       </div>
     </div>
   );
