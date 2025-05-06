@@ -59,9 +59,10 @@ const Chatbot = () => {
               <table style={{ width: '100%', borderCollapse: 'collapse', color: 'black' }}>
                 <thead>
                   <tr>
-                    <th style={{ border: '1px solid white', padding: '5px', alignItems: 'left'}}>Field</th>
+                    <th style={{ border: '1px solid white', padding: '5px' }}>Field</th>
                     <th style={{ border: '1px solid white', padding: '5px' }}>Value</th>
                     <th style={{ border: '1px solid white', padding: '5px' }}>Status</th>
+                    <th style={{ border: '1px solid white', padding: '5px' }}>Suggestions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -70,6 +71,9 @@ const Chatbot = () => {
                       <td style={{ border: '1px solid white', padding: '5px' }}>{field}</td>
                       <td style={{ border: '1px solid white', padding: '5px' }}>{info.extracted_value}</td>
                       <td style={{ border: '1px solid white', padding: '5px' }}>{info.status}</td>
+                      <td style={{ border: '1px solid white', padding: '5px' }}>
+                        {info.suggested_matches?.length > 0 ? info.suggested_matches.join(', ') : 'N/A'}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
