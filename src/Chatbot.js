@@ -70,8 +70,8 @@ const Chatbot = () => {
 
   return (
     <div className="chatbot-container" style={{ 
-      width: '350px', 
-      height: '500px', 
+      width: '500px', 
+      height: '93vh', 
       border: '1px solid #ccc', 
       padding: '10px', 
       position: 'fixed', 
@@ -81,15 +81,12 @@ const Chatbot = () => {
       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)', // optional: for subtle shadow
       borderRadius: '10px', // optional: rounded corners
       overflowY: 'auto', // <-- add this
-      borderColor: 'rgba(255, 0, 0, 0.59)',
-      borderWidth: '3px',
-      borderStyle: 'solid'
     }}>
       {/* Chatbot Header */}
       <div className="chatbot-header" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '10px', backgroundColor: '#ed3726', color: 'white', borderRadius: '8px', marginBottom: '15px' }}>
         <img src={logo} alt="Logo" style={{ width: '30px', height: '30px' }} />
         
-        <span>Hello user, how may I assist you today?</span>
+        <span style={{ fontSize : '18px'}} >Hello user, how may I assist you today?</span>
         <div></div>
       </div>
 
@@ -99,7 +96,7 @@ const Chatbot = () => {
       {messages.map((msg, index) => (
   <div className='textmsg' key={index} style={{ marginBottom: '10px', display: 'flex', justifyContent: msg.isUser ? 'flex-end' : 'flex-start' }}>
     {msg.isUser ? (
-      <div style={{ padding: '10px', borderRadius: '10px', display: 'flex', alignContent: 'flex-start', backgroundColor: '#2c3e50', color: 'white' }} className="bubble user-message ">{msg.text}</div>
+      <div style={{ fontSize: '14px',  padding: '10px', borderRadius: '10px', display: 'flex', alignContent: 'flex-start', backgroundColor: '#2c3e50', color: 'white' }} className="bubble user-message ">{msg.text}</div>
     ) : msg.responseContent ? (
       <div style={{  }} className="bubble bot-message">
         <strong>{"Request Details"}</strong>
