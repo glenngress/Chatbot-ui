@@ -73,7 +73,7 @@ const Chatbot = () => {
       {/* Chatbot Header */}
       <div className="chatbot-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', backgroundColor: '#ed3726', color: 'white' }}>
         <img src={logo} alt="Logo" style={{ width: '30px', height: '30px' }} />
-        <span>How may we assist you today?</span>
+        <span>Hello user, how may I assist you today?</span>
       </div>
 
       <div
