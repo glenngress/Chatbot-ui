@@ -70,8 +70,8 @@ const Chatbot = () => {
 
   return (
     <div className="chatbot-container" style={{ 
-      width: '350px', 
-      height: '500px', 
+      width: '500px', 
+      height: '93vh', 
       border: '1px solid #ccc', 
       padding: '10px', 
       position: 'fixed', 
@@ -79,23 +79,26 @@ const Chatbot = () => {
       right: '10px',
       backgroundColor: '#ffffff', // <-- add this
       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)', // optional: for subtle shadow
-      borderRadius: '10px' // optional: rounded corners
+      borderRadius: '10px', // optional: rounded corners
+      overflowY: 'auto', // <-- add this
     }}>
       {/* Chatbot Header */}
-      <div className="chatbot-header" style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', padding: '10px', backgroundColor: '#ed3726', color: 'white', borderRadius: '8px', marginBottom: '15px' }}>
+      <div className="chatbot-header" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '10px', backgroundColor: '#ed3726', color: 'white', borderRadius: '8px', marginBottom: '15px' }}>
         <img src={logo} alt="Logo" style={{ width: '30px', height: '30px' }} />
+        
         <span>Hello user, how may I assist you today?</span>
+        <div></div>
       </div>
 
       <div
         className="messages"
       >
       {messages.map((msg, index) => (
-  <div key={index} style={{ marginBottom: '10px' }}>
+  <div className='textmsg' key={index} style={{ marginBottom: '10px', display: 'flex', justifyContent: msg.isUser ? 'flex-end' : 'flex-start' }}>
     {msg.isUser ? (
-      <div className="user-message bubble">{msg.text}</div>
+      <div style={{ padding: '10px', borderRadius: '10px', display: 'flex', alignContent: 'flex-start', backgroundColor: '#2c3e50', color: 'white' }} className="bubble user-message ">{msg.text}</div>
     ) : msg.responseContent ? (
-      <div className="bot-message bubble">
+      <div style={{  }} className="bubble bot-message">
         <strong>{"Request Details"}</strong>
         <table style={{ marginTop: '8px', width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
           <thead>
