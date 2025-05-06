@@ -69,7 +69,18 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="chatbot-container" style={{ width: '350px', height: '500px', border: '1px solid #ccc', padding: '10px', position: 'fixed', bottom: '10px', right: '10px' }}>
+    <div className="chatbot-container" style={{ 
+      width: '350px', 
+      height: '500px', 
+      border: '1px solid #ccc', 
+      padding: '10px', 
+      position: 'fixed', 
+      bottom: '10px', 
+      right: '10px',
+      backgroundColor: '#ffffff', // <-- add this
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)', // optional: for subtle shadow
+      borderRadius: '10px' // optional: rounded corners
+    }}>
       {/* Chatbot Header */}
       <div className="chatbot-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', backgroundColor: '#ed3726', color: 'white' }}>
         <img src={logo} alt="Logo" style={{ width: '30px', height: '30px' }} />
