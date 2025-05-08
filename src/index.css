@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-image: url('./assets/KirkeCC.png'); /* Update with correct path */
+  background-image: url('./assets/background.jpg'); /* Update with correct path */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
