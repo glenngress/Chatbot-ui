@@ -105,13 +105,13 @@ const Chatbot = () => {
                 <div className="example-card" onClick={() => {
                   setMessages(prev => [
                     ...prev,
-                    { text: 'Create a request', isUser: true },
-                    { text: 'Please provide me with the details of your request', isUser: false }
+                    { text: 'Create Request', isUser: true },
+                    { text: 'Please provide me with the details for your request', isUser: false }
                   ]);
                   setShowGreeting(false);
                   setIsCreatingRequest(true);
                 }}>
-                  Create a Request
+                  Create Request
                 </div>
               </div>
             )}
