@@ -147,17 +147,19 @@ const Chatbot = () => {
                     <table>
                       <thead>
                         <tr>
-                          <th>Field</th>
-                          <th>Value</th>
+                          {["Network", "Activity Category", "Service Impact", "Risk Level"].map(field => (
+                            <th key={field}>{field}</th>
+                          ))}
                         </tr>
                       </thead>
                       <tbody>
-                        {Object.entries(msg.responseContent.table).map(([field, details]) => (
-                          <tr key={field}>
-                            <td>{field}</td>
-                            <td>{details.matched_value}</td>
-                          </tr>
-                        ))}
+                        <tr>
+                          {["Network", "Activity Category", "Service Impact", "Risk Level"].map(field => (
+                            <td key={field}>
+                              {msg.responseContent.table[field]?.matched_value || "-"}
+                            </td>
+                          ))}
+                        </tr>
                       </tbody>
                     </table>
                     {!hasConfirmed && (
